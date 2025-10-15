@@ -1,0 +1,152 @@
+/* Reset and base */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background-color: #f0f4f8;
+  color: black;
+}
+
+
+/* Main container */
+.product-selection {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+/* Navbar */
+.navbar {
+  height: 80px;
+  width: 100%;
+  background-color: #0f172a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Navbar sections */
+.navbar-left h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.navbar-center {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-item {
+  color: #cbd5e1;
+  cursor: pointer;
+}
+
+.details-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.content h1 {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.content p {
+  font-size: 1rem;
+  max-width: 600px;
+  color: #334155;
+  line-height: 1.6;
+}
+.billing-summary {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  color: #333;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 600px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.billing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.billing-header h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #222;
+}
+
+.exit-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.exit-btn:hover {
+  color: #ff4d4d;
+}
+
+.billing-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.billing-table th,
+.billing-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.billing-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+  color: #444;
+}
+
+.billing-table .grand-total td {
+  font-weight: bold;
+  font-size: 18px;
+  color: navy;
+  background-color: #f0fdf8;
+}

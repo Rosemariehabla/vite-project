@@ -1,0 +1,38 @@
+.LandingHeader {
+  background-image: url('../assets/businessConference.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+  padding: 0;
+  position: relative;
+}
+.LandingDescription {
+  margin-top: 2rem;
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0.6);
+  color:black;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+
+  /* ✅ Center the box */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* ✅ Make sure text wraps properly */
+  line-height: 1.6;
+}
+
