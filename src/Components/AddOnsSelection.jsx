@@ -8,7 +8,7 @@ import SignageImg from "../assets/addons/Signage.jpg";
 import SpeakerImg from "../assets/addons/Speaker.jpg";
 import WhiteboardsImg from "../assets/addons/Whiteboards.jpg";
 
-export function AddOnsSelection({ setAddOnsTotal }) {
+export function AddOnsSelection({ setAddOnsTotal, setAddOnsItems }) {
   const initialAddOns = [
     { name: "Speakers", capacity: 15, cost: 1500, image: SpeakerImg },
     { name: "Microphones", capacity: 15, cost: 1500, image: MicrophonesImg },
@@ -38,12 +38,22 @@ export function AddOnsSelection({ setAddOnsTotal }) {
     0
   );
 
-  // ✅ Send subtotal to parent
   useEffect(() => {
     if (setAddOnsTotal) {
       setAddOnsTotal(subtotal);
     }
-  }, [subtotal, setAddOnsTotal]);
+
+    if (setAddOnsItems) {
+      const selectedItems = addOns
+        .filter((item) => item.quantity > 0)
+        .map((item) => ({
+          name: item.name,
+          unitCost: item.cost,
+          quantity: item.quantity
+        }));
+      setAddOnsItems(selectedItems);
+    }
+  }, [addOns, subtotal, setAddOnsTotal, setAddOnsItems]);
 
   return (
     <div className="addons-selection">
@@ -64,7 +74,7 @@ export function AddOnsSelection({ setAddOnsTotal }) {
       </div>
       <div className="total-summary">
         <h3>Subtotal for all add-ons</h3>
-        <p>Total Cost: ₱{subtotal}</p>
+        <p>Total Cost: ${subtotal}</p>
       </div>
     </div>
   );

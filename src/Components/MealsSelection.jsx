@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./MealsSelection.css";
 
-export function MealsSelection({ setMealsTotal }) {
+export function MealsSelection({ setMealsTotal, setMealsItems }) {
   const [numPeople, setNumPeople] = useState(0);
   const [selectedMeals, setSelectedMeals] = useState({
     breakfast: false,
@@ -29,12 +29,24 @@ export function MealsSelection({ setMealsTotal }) {
       .filter(([_, isSelected]) => isSelected)
       .reduce((sum, [meal]) => sum + mealOptions[meal].price, 0) * numPeople;
 
-  // ✅ Send subtotal to parent
   useEffect(() => {
+    // ✅ Send subtotal to parent
     if (setMealsTotal) {
       setMealsTotal(subtotal);
     }
-  }, [subtotal, setMealsTotal]);
+
+    // ✅ Send selected meal items to parent
+    if (setMealsItems) {
+      const selectedItems = Object.entries(selectedMeals)
+        .filter(([_, isSelected]) => isSelected)
+        .map(([mealKey]) => ({
+          name: mealOptions[mealKey].label,
+          unitCost: mealOptions[mealKey].price,
+          quantity: numPeople
+        }));
+      setMealsItems(selectedItems);
+    }
+  }, [selectedMeals, numPeople, subtotal, setMealsTotal, setMealsItems]);
 
   return (
     <div className="meals-selection">
@@ -67,7 +79,7 @@ export function MealsSelection({ setMealsTotal }) {
 
       <div className="subtotal">
         <h3>Total Cost</h3>
-        <p>₱{subtotal}</p>
+        <p>${subtotal}</p>
       </div>
     </div>
   );

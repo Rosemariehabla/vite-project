@@ -7,7 +7,7 @@ import LargeMeetingRoomImg from "../assets/venues/LargeMeetingRoom.jpeg";
 import SmallMeetingRoomImg from "../assets/venues/SmallMeetingRoom.jpg";
 import PresentationRoomImg from "../assets/venues/PresentationRoom.jpeg";
 
-export function VenueSelection({ setVenueTotal }) {
+export function VenueSelection({ setVenueTotal, setVenueItems }) {
   const initialRooms = [
     {
       name: "Conference Room",
@@ -62,10 +62,20 @@ export function VenueSelection({ setVenueTotal }) {
     0
   );
 
-  // ✅ Send subtotal to parent whenever it changes
   useEffect(() => {
     setVenueTotal(subtotal);
-  }, [subtotal, setVenueTotal]);
+
+    if (setVenueItems) {
+      const selectedRooms = rooms
+        .filter((room) => room.quantity > 0)
+        .map((room) => ({
+          name: room.name,
+          unitCost: room.cost,
+          quantity: room.quantity
+        }));
+      setVenueItems(selectedRooms);
+    }
+  }, [rooms, subtotal, setVenueTotal, setVenueItems]);
 
   return (
     <div className="venue-room-selection">
@@ -86,7 +96,7 @@ export function VenueSelection({ setVenueTotal }) {
       </div>
       <div className="total-summary">
         <h3>Subtotal for all rooms</h3>
-        <p>Total Cost: ₱{subtotal}</p>
+        <p>Total Cost: ${subtotal}</p>
       </div>
     </div>
   );
